@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sona — Shopify Developer & Digital Marketing Specialist</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #98a0b3;
+      --accent1: linear-gradient(135deg,#7c3aed,#06b6d4);
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --glass-strong: rgba(255,255,255,0.06);
+      --shadow: 0 8px 30px rgba(2,6,23,0.6);
+      --text: #e6eef8;
+      --accent-color: #7c3aed;
+      --transition: 300ms cubic-bezier(.2,.9,.3,1);
+    }
+    [data-theme="light"]{
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --glass: rgba(2,6,23,0.03);
+      --glass-strong: rgba(2,6,23,0.04);
+      --text: #0b1220;
+      --shadow: 0 10px 30px rgba(12,18,28,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;padding:0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(6,182,212,0.06), transparent),
+                  var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      transition: background var(--transition), color var(--transition);
+      scroll-behavior: smooth;
+    }
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:28px;}
+    header{
+      position:sticky;top:12px;z-index:40;backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius: 12px;
+      padding:8px 12px;display:flex;align-items:center;gap:16px;justify-content:space-between;
+      box-shadow:var(--shadow);
+    }
+
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo .mark{width:46px;height:46px;border-radius:10px;background:var(--accent1);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-family:Poppins}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:0.9}
+    nav a:hover{opacity:1;transform:translateY(-2px);}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;cursor:pointer;transition:var(--transition);}
+    .btn:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero-left h1{font-family:Poppins;font-size:34px;margin:0 0 12px}
+    .type-wrap{display:inline-block;color:var(--accent-color);}
+    .hero-left p{color:var(--muted);line-height:1.6}
+    .hero-cta{display:flex;gap:12px;margin-top:18px}
+    .primary{background:var(--accent-color);color:white;padding:12px 18px;border-radius:12px;border:none;font-weight:700}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text);padding:10px 14px;border-radius:10px}
+
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:var(--shadow)}
+    .avatar{width:180px;height:180px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111827, #0b1220);overflow:hidden}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .socials{display:flex;gap:10px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--glass);}
+
+    /* Sections */
+    section{padding:48px 0;border-radius:12px}
+    h2.section-title{display:flex;align-items:center;gap:10px;font-size:20px;margin:0 0 18px}
+
+    /* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition)}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.5)}
+    .thumb{height:160px;border-radius:10px;overflow: hidden;margin-bottom: 12px;background: #111;}
+    .thumb img{width: 100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease; }
+    .thumb img:hover{transform:scale(1.05);}
+    .card h3{margin:12px 0 8px}
+    .card p{color:var(--muted);margin:0 0 12px}
+    .links{display:flex;gap:8px}
+    .chip{padding:8px 10px;border-radius:8px;background:var(--glass);font-weight:600;text-decoration:none;color:var(--text)}
+
+    /* Tech icons */
+    .tech-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+    .tech{background:var(--card);padding:12px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+    .tech svg{width:34px;height:34px}
+    .tech small{color:var(--muted)}
+
+    /* About */
+    .about{display:flex;gap:18px;align-items:flex-start}
+    .about .bio{flex:1}
+    .about .stats{width:260px;background:var(--glass);padding:16px;border-radius:12px}
+    .timeline{list-style:none;padding:0;margin:12px 0 0}
+    .timeline li{padding:8px 0;border-left:2px solid rgba(255,255,255,0.04);margin-left:10px;padding-left:14px}
+
+    /* Footer */
+    footer{padding:24px 0;border-top:1px dashed rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between}
+
+    /* Scroll to top */
+    #toTop{position:fixed;right:20px;bottom:20px;padding:12px 14px;border-radius:12px;background:var(--accent-color);color:white;border:none;display:none;box-shadow:var(--shadow);cursor:pointer}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 320px}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .tech-grid{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width:680px){
+      .container{padding:16px}
+      .hero{grid-template-columns:1fr;}
+      header{padding:10px}
+      .projects-grid{grid-template-columns:1fr}
+      .tech-grid{grid-template-columns:repeat(3,1fr)}
+      .about{flex-direction:column}
+      .about .stats{width:100%}
+      nav{display:none}
+    }
+
+    /* Small aesthetic animations */
+    .fade-up{opacity:0;transform:translateY(8px);transition:all 600ms cubic-bezier(.2,.9,.3,1)}
+    .fade-up.in-view{opacity:1;transform:none}
+
+    /* typing cursor */
+    .cursor{display:inline-block;width:2px;height:22px;background:var(--accent-color);margin-left:6px;vertical-align:middle;animation:blink 1s steps(2) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="mark">SN</div>
+        <div>
+          <div style="font-weight:700">Sona</div>
+          <small style="color:var(--muted)">Shopify Developer • Digital Marketer</small>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#tech">Technologies</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button class="btn" id="themeToggle" aria-label="Toggle theme">🌗</button>
+        <a class="btn" href="#contact">Hire Me</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="home" class="hero">
+      <div class="hero-left">
+        <h1>Hi — I'm <span style="color:var(--accent-color)">Sona</span>, a Shopify Developer & Digital Marketing Specialist.</h1>
+        <div style="margin:8px 0 18px">
+          <span class="type-wrap" id="type"></span><span class="cursor" aria-hidden="true"></span>
+        </div>
+        <p>I build high-converting Shopify stores, custom apps, and SEO-friendly content that helps businesses increase traffic and conversions. I combine development skills with digital marketing experience to deliver results-focused solutions.</p>
+
+        <div class="hero-cta">
+          <a class="primary" href="#projects">View My Work</a>
+          <a class="secondary" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="avatar">
+       <img src="sona.jpeg" 
+       alt="Sona — Shopify Developer" />
+      </div>
+
+        <div style="text-align:center">
+          <div style="font-weight:700">Sona — Shopify Dev</div>
+          <small style="color:var(--muted)">UAE • Open to works</small>
+        </div>
+        <div class="socials" role="navigation" aria-label="Social links">
+          <a href="https://www.linkedin.com/in/sona-sreedhar-5b04bb236/" title="LinkedIn" aria-label="LinkedIn">li</a>
+          <!-- <a href="https://www.instagram.com/sona_sreedhar07/" title="GitHub" aria-label="GitHub">ig</a> -->
+          <a href="https://github.com/SonaSreedhar907" title="GitHub" aria-label="GitHub">gh</a>
+        </div>
+      </aside>
+    </main>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="card fade-up">
+          <div class="thumb">
+             <img src="exotic.PNG" alt="Exotic"/>
+          </div>
+          <h3>Exotic Wood zone - Shopify Store</h3>
+          <p>Shopify store with sleek collections, conversion-focused layouts, and SEO-friendly templates for trendy apparel</p>
+          <div class="links">
+            <a class="chip" href="https://exoticwoodzone.com/">Demo</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card fade-up">
+          <div class="thumb">
+            <img src="Capture.PNG" alt="PureGas"/>
+          </div>
+          <h3>PureGas - Shopify Store</h3>
+          <p>Shopify store with optimized collections, SEO-friendly templates, and streamlined navigation for industrial gas products</p>
+          <div class="links">
+            <a class="chip" href="https://gasneeds.com/">Demo</a>
+            <!-- <a class="chip" href="#">Repo</a> -->
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card fade-up">
+          <div class="thumb">
+            <img src="Capture2.PNG" alt="BestCocopeat"/>
+          </div>
+          <h3>BestCocopeat - Shopify Store</h3>
+          <p>Shopify store with optimized collections, SEO-friendly templates, and easy navigation for premium cocopeat products.</p>
+          <div class="links">
+            <a class="chip" href="https://bestcocopeat.com/">Demo</a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="card fade-up">
+          <div class="thumb">
+            <img src="Capture3.PNG" alt="PureGas"/>
+          </div>
+          <h3>PureGas - Shopify Store</h3>
+          <p>Custom Shopify store featuring organized collections, SEO-optimized pages, and user-friendly design for industrial gas solutions.</p>
+          <div class="links">
+            <a class="chip" href="https://puregasuae.com/">Demo</a>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="card fade-up">
+          <div class="thumb">
+            <img src="Capture4.PNG" alt="MernBlog"/>
+          </div>
+          <h3>Sona's Blog</h3>
+          <p>Blog platform built with Node.js, Express.js, React.js, and MongoDB for fast, scalable, and SEO-friendly content publishing.</p>
+          <div class="links">
+            <a class="chip" href="https://github.com/SonaSreedhar907/sona-s-blog">Code</a>
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article class="card fade-up">
+          <div class="thumb">
+            <img src="Capture5.PNG" alt="GasNeeds"/>
+          </div>
+          <h3>Digital Marketing Works</h3>
+          <p>Digital marketing setup with SEO-optimized content, targeted blogs, and Google Search Console integration for GasNeeds.</p>
+          <div class="links">
+            <a class="chip" href="#">SEO</a>
+            <a class="chip" href="#">SEM</a>
+            <a class="chip" href="#">Email Marketing</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section id="tech">
+      <h2 class="section-title">Technologies</h2>
+      <div class="tech-grid">
+           
+        <div class="tech">
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/shopify.svg" 
+       width="35" height="35" alt="Shopify" 
+       style="filter: invert(65%) sepia(25%) saturate(500%) hue-rotate(50deg) brightness(95%) contrast(90%);" />
+  <small>Shopify</small>
+</div>
+        
+<div class="tech">
+  <i class="devicon-html5-plain colored" style="font-size:35px;"></i>
+  <small>HTML</small>
+</div>
+<div class="tech">
+  <i class="devicon-css3-plain colored" style="font-size:35px;"></i>
+  <small>CSS</small>
+</div>
+<div class="tech">
+  <i class="devicon-javascript-plain colored" style="font-size:35px;"></i>
+  <small>JavaScript</small>
+</div>
+<div class="tech">
+  <!-- SEO (magnifying glass icon, blue) -->
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" width="35" height="35" aria-hidden="true">
+    <title>SEO</title>
+    <circle cx="10" cy="10" r="6" stroke="#458CF5" stroke-width="2" fill="none"/>
+    <line x1="14" y1="14" x2="20" y2="20" stroke="#458CF5" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <small>SEO</small>
+</div>
+
+<div class="tech">
+  <!-- SEM icon (magnifying glass over a graph) -->
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 48 48" width="35" height="35" aria-hidden="true">
+    <title>SEM</title>
+    <!-- blue background circle -->
+    <circle cx="24" cy="24" r="24" fill="#1E90FF"/>
+    <!-- magnifying glass handle -->
+    <line x1="28" y1="28" x2="34" y2="34" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <!-- magnifying glass circle -->
+    <circle cx="24" cy="24" r="8" stroke="#ffffff" stroke-width="2" fill="none"/>
+    <!-- small bar graph inside -->
+    <rect x="20" y="20" width="2" height="6" fill="#ffffff"/>
+    <rect x="23" y="18" width="2" height="8" fill="#ffffff"/>
+    <rect x="26" y="16" width="2" height="10" fill="#ffffff"/>
+  </svg>
+  <small>SEM</small>
+</div>
+
+<div class="tech">
+  <!-- Google Analytics icon (inline SVG, brand-orange fill #E37400) -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="35" height="35" aria-hidden="true">
+    <!-- three ascending bars -->
+    <rect x="3.2" y="11.5" width="2.8" height="7.5" rx="0.5" fill="#E37400"/>
+    <rect x="9.6" y="8.0" width="2.8" height="11.0" rx="0.5" fill="#E37400"/>
+    <rect x="16.0" y="4.8" width="2.8" height="14.2" rx="0.5" fill="#E37400"/>
+    <!-- circle (dot) -->
+    <circle cx="20.5" cy="3.5" r="2.5" fill="#E37400"/>
+  </svg>
+  <small>Google Analytics</small>
+</div>
+
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" width="35" height="35" fill="#458CF5">
+    <title>Google Search Console</title>
+    <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5v15A1.5 1.5 0 0 0 1.5 21h21a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 22.5 3zm0 1.5h21v15h-21zM6 7.5v1.5h12V7.5zm0 4.5v1.5h12V12zM6 16.5V18h7.5v-1.5z"/>
+  </svg>
+  <small>Google Search Console</small>
+</div>
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" width="35" height="35">
+    <title>Google Ads</title>
+    <path fill="#4285F4" d="M13.545 2.01a4.487 4.487 0 0 0-3.642 2.215L.442 21.179a4.49 4.49 0 0 0 6.122 6.122l9.46-16.954A4.487 4.487 0 0 0 13.545 2.01z"/>
+    <path fill="#FBBC04" d="M20.24 18.872a4.49 4.49 0 1 0-4.49 7.775 4.49 4.49 0 0 0 4.49-7.775z"/>
+    <path fill="#34A853" d="M23.558 2.821a4.49 4.49 0 0 0-6.122 6.122l2.665 4.776a4.49 4.49 0 1 0 6.122-6.122z"/>
+  </svg>
+  <small>Google Ads</small>
+</div>
+
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="35" height="35">
+    <title>Google Tag Manager</title>
+    <path fill="#4285F4" d="M225.9 52.9L52.9 225.9c-70.5 70.5-70.5 185 0 255.5s185 70.5 255.5 0l50.5-50.5-78.1-78.1-50.5 50.5c-28.5 28.5-74.7 28.5-103.2 0s-28.5-74.7 0-103.2l173-173-74.2-74.2z"/>
+    <path fill="#34A853" d="M459.1 52.9c-70.5-70.5-185-70.5-255.5 0L153.1 103.4l78.1 78.1 50.5-50.5c28.5-28.5 74.7-28.5 103.2 0s28.5 74.7 0 103.2l-173 173 74.2 74.2 172.9-172.9c70.5-70.5 70.5-185 0-255.5z"/>
+  </svg>
+  <small>Google Tag Manager</small>
+</div>
+
+<div class="tech">
+  <!-- Mailchimp icon (yellow circle + black monkey face simplified) -->
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 48 48" width="35" height="35" aria-hidden="true">
+    <title>Mailchimp</title>
+    <!-- yellow background -->
+    <circle cx="24" cy="24" r="24" fill="#FFE01B"/>
+    <!-- simplified monkey face -->
+    <circle cx="24" cy="20" r="6" fill="#000000"/>
+    <circle cx="22" cy="19" r="1.2" fill="#FFE01B"/>
+    <path d="M18 28c2.5 3 9.5 3 12 0" stroke="#000000" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+  <small>Mailchimp</small>
+</div>
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 48 48" width="35" height="35" aria-hidden="true">
+    <title>Content Marketing</title>
+    <circle cx="24" cy="24" r="24" fill="#9C27B0"/>
+    <rect x="14" y="18" width="20" height="2" fill="#ffffff"/>
+    <rect x="14" y="22" width="20" height="2" fill="#ffffff"/>
+    <rect x="14" y="26" width="20" height="2" fill="#ffffff"/>
+  </svg>
+  <small>Content Marketing</small>
+</div>
+
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 48 48" width="35" height="35" aria-hidden="true">
+    <title>Social Media</title>
+    <circle cx="24" cy="24" r="24" fill="#00BFFF"/>
+    <circle cx="24" cy="24" r="10" fill="#ffffff"/>
+    <circle cx="20" cy="22" r="2" fill="#00BFFF"/>
+    <circle cx="28" cy="22" r="2" fill="#00BFFF"/>
+    <path d="M20 28 Q24 32 28 28" stroke="#00BFFF" stroke-width="2" fill="none"/>
+  </svg>
+  <small>Social Media Marketing</small>
+</div>
+
+
+
+<div class="tech">
+  <i class="devicon-nodejs-plain colored" style="font-size:35px;"></i>
+  <small>Node.js</small>
+</div>
+<div class="tech">
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/express.svg" width="35" height="35" alt="Express.js" style="filter: invert(29%) sepia(9%) saturate(164%) hue-rotate(74deg) brightness(95%) contrast(92%);" />
+  <small>Express.js</small>
+</div>
+<div class="tech">
+  <i class="devicon-react-original colored" style="font-size:35px;"></i>
+  <small>React.js</small>
+</div>
+
+<div class="tech">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="35" height="35">
+    <title>WordPress</title>
+    <circle cx="120" cy="120" r="120" fill="#21759B"/>
+    <path fill="#FFFFFF" d="M120 36c-46.4 0-84 37.6-84 84 0 35.3 21.5 65.6 52.2 78.9L62.8 92.2c-1.4-3.6-2.1-7.5-2.1-11.5 0-14.2 8.2-26.6 20.2-32.7-2.8 5.7-4.4 12.2-4.4 19.1 0 8.8 2.8 16.9 7.6 23.5l27.6 75.6 16.3-48.9-11.6-33.6c-1.7-4.8-2.7-9.9-2.7-15.2 0-8.5 2.7-16.3 7.4-22.7 3.7-5.1 8.7-9.3 14.7-12.2 4.4-2.1 9.4-3.2 14.6-3.2 5.8 0 11.3 1.4 16.1 3.9-6.9 1.6-13.2 5.4-18 10.6-5.9 6.4-9.6 15-9.6 24.4 0 6.2 1.5 12.2 4.1 17.4l16.8 46.4 9.7-29.5c2.1-6.1 3.2-12.7 3.2-19.5 0-7.8-1.7-15.1-4.7-21.8-1.9-4.1-4.4-7.9-7.4-11.2 5.9 2.1 11.2 5.7 15.3 10.5 6.6 7.8 10.7 18 10.7 29 0 6.4-1.2 12.5-3.5 18.1l-25.8 72.2c28.7-12.8 48.7-41.6 48.7-75.1 0-46.4-37.6-84-84-84z"/>
+  </svg>
+  <small>WordPress</small>
+</div>
+
+
+<div class="tech">
+  <!-- Canva icon (turquoise circle + white "C") -->
+  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 48 48" width="35" height="35" aria-hidden="true">
+    <title>Canva</title>
+    <!-- turquoise circle background -->
+    <circle cx="24" cy="24" r="24" fill="#00C4CC"/>
+    <!-- stylized C -->
+    <path d="M32 16c-2-3.5-6-5-10-4-4.5 1-7.5 4.5-7.5 9s3 8 7.5 9c4 1 8-0.5 10-4" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="3.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+  </svg>
+  <small>Canva</small>
+</div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about">
+        <div class="bio">
+          <p>I started as a Full Stack Developer and gradually transitioned into Shopify and Digital Marketing. Today, I help businesses convert visitors into customers by building fast, user-friendly stores, optimizing them for search, and running data-driven advertising campaigns.</p>
+           <ul class="timeline">
+            <li><strong>2018</strong> — Start my journey</li>
+            <li><strong>2022</strong> — Graduated from A P J Abdul Kalam Technological University</li>
+            <li><strong>2023</strong> — Former Full Stack Developer Intern at Brototype</li>
+            <li><strong>2024</strong> — Former Shopify Developer at Exotic Wood Zone </li>
+            <li><strong>2025</strong> — Shopify Developer & Digital Marketing Executive at Flare Technical Services LLC</li>
+          </ul>
+        </div>
+
+        <aside class="stats">
+          <div style="font-weight:700">Highlights</div>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <div style="background:var(--card);padding:10px;border-radius:8px;min-width:110px;text-align:center">2+ yrs<br><small style="color:var(--muted)">Experience</small></div>
+            <div style="background:var(--card);padding:10px;border-radius:8px;min-width:110px;text-align:center">30+<br><small style="color:var(--muted)">Projects</small></div>
+            <div style="background:var(--card);padding:10px;border-radius:8px;min-width:110px;text-align:center">100%<br><small style="color:var(--muted)">Client Satisfaction</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+        <div style="flex:1;min-width:260px">
+          <p>Interested in working together? Send a message — I usually reply within 24 hours.</p>
+          <p style="color:var(--muted)"><strong>Email:</strong> <a href="mailto:sonasreedhar44@gmail.com">sonasreedhar44@gmail.com</a></p>
+          <p style="color:var(--muted)"><strong>Contact Number:</strong> +971 568300713</p>
+        </div>
+
+        <form style="min-width:320px;max-width:520px;background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)" onsubmit="event.preventDefault();alert('Message sent — replace this with your backend integration!')">
+          <label style="display:block;margin-bottom:8px">Name</label>
+          <input required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)" />
+          <label style="display:block;margin-top:12px;margin-bottom:8px">Message</label>
+          <textarea required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text)"></textarea>
+          <button class="primary" style="margin-top:12px">Send</button>
+        </form>
+      </div>
+
+    </section>
+
+    <footer>
+  <div>
+    <small style="color:var(--muted)">&copy; <span id="year"></span> Sona. All rights reserved.</small>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center">
+
+    <!-- GitHub Icon -->
+    <a href="https://github.com/SonaSreedhar907" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <title>GitHub</title>
+        <path d="M12 0.297C5.37 0.297 0 5.667 0 12.297c0 5.297 3.438 9.8 8.205 11.387.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.755-1.333-1.755-1.09-.744.082-.728.082-.728 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.76-1.605-2.665-.304-5.467-1.332-5.467-5.93 0-1.31.47-2.38 1.235-3.22-.123-.303-.535-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 013-.405c1.02.005 2.045.138 3 .405 2.29-1.552 3.296-1.23 3.296-1.23.655 1.65.243 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.624-5.48 5.922.43.37.815 1.1.815 2.22 0 1.604-.015 2.896-.015 3.287 0 .32.217.694.825.576C20.565 22.093 24 17.59 24 12.297c0-6.63-5.373-12-12-12"/>
+      </svg>
+    </a>
+
+    <!-- LinkedIn Icon -->
+    <a href="https://www.linkedin.com/in/sona-sreedhar-5b04bb236/" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <title>LinkedIn</title>
+        <path d="M4.98 3.5C3.35 3.5 2 4.85 2 6.48s1.35 2.98 2.98 2.98c1.63 0 2.98-1.35 2.98-2.98S6.61 3.5 4.98 3.5zM2.4 21h5.16V9.75H2.4V21zm7.5-11.25h4.92v1.6h.07c.69-1.3 2.38-2.67 4.89-2.67 5.23 0 6.2 3.45 6.2 7.93V21h-5.16v-6.58c0-1.57-.03-3.58-2.18-3.58-2.18 0-2.52 1.7-2.52 3.45V21H9.9V9.75z"/>
+      </svg>
+    </a>
+  </div>
+  
+</footer>
+  </div>
+
+  <button id="toTop" title="Scroll to top">⬆</button>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // theme toggle + save
+    const html = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const current = localStorage.getItem('theme') || 'dark';
+    if(current === 'light') html.setAttribute('data-theme','light');
+    btn.addEventListener('click', ()=>{
+      const isLight = html.getAttribute('data-theme') === 'light';
+      if(isLight){ html.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); }
+      else{ html.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); }
+    });
+
+    // typing effect
+    const strings = [
+      'I build Shopify stores.',
+      'I customize Shopify themes.',
+      'I do SEO & Google Ads.',
+      'I optimize for conversions.'
+    ];
+    const typeEl = document.getElementById('type');
+    let idx = 0;let char = 0;let forward = true;
+    function tick(){
+      const cur = strings[idx];
+      if(forward){
+        char++;
+        typeEl.textContent = cur.slice(0,char);
+        if(char === cur.length){ forward=false; setTimeout(tick,1200); return }
+      } else {
+        char--;
+        typeEl.textContent = cur.slice(0,char);
+        if(char === 0){ forward=true; idx=(idx+1)%strings.length }
+      }
+      setTimeout(tick, forward?80:40);
+    }
+    tick();
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // scroll to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY>600) toTop.style.display='block'; else toTop.style.display='none';
+    });
+    toTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // smooth nav highlight (basic)
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click', ()=>{
+      document.querySelectorAll('nav a').forEach(x=>x.style.opacity=0.9);
+      a.style.opacity=1;
+    }));
+
+    // mobile nav: simple toggle (show on small screens)
+    // optional: you can implement hamburger menu here
+
+  </script>
+</body>
+</html>
